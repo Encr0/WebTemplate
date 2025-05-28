@@ -1,4 +1,3 @@
-// Datos iniciales
 const products = [
   { id: 1, name: "Smartphone Premium", price: 598.990, category: "electronica", image: "images/smartPhone.jpg", description: "Último modelo con cámara de alta resolución"},
   { id: 2, name: "Laptop Gaming", price: 999.000, category: "electronica", image: "images/pcgamer.jpg", description: "Potente laptop para gaming y trabajo profesional"},
@@ -16,7 +15,6 @@ let comments = [
 
 let cart = [];
 
-// Renderizadores
 function renderProducts(filtered = products) {
   const grid = document.getElementById("productGrid");
   grid.innerHTML = "";
@@ -81,8 +79,6 @@ function renderCart() {
 
   totalAmount.textContent = total.toFixed(2);
 }
-
-// Funciones principales
 function addToCart(productId) {
   const item = cart.find(i => i.id === productId);
   if (item) {
@@ -137,8 +133,6 @@ function submitComment(e) {
   renderComments();
   e.target.reset();
 }
-
-// Inicializador
 window.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   renderComments();

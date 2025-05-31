@@ -3,280 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Template - Encr0</title>
-    
+    <title>TechStore Chile - Tu Tienda de Tecnología</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="preloader" id="preloader">
-        <div class="loading"></div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#inicio">
-                <i class="fas fa-store me-2"></i>Open Template - Encr0
-            </a>
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-microchip me-2"></i>TechStore</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
+                        <a class="nav-link category-filter" href="#" data-category="all">Todos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#catalogo">Catálogo</a>
+                        <a class="nav-link category-filter" href="#" data-category="laptops">Laptops</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#comentarios">Comentarios</a>
+                        <a class="nav-link category-filter" href="#" data-category="smartphones">Smartphones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#soporte">Soporte</a>
+                        <a class="nav-link category-filter" href="#" data-category="gaming">Gaming</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-outline-light position-relative ms-2 btn-animated" onclick="toggleCart()">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span id="cartCount" class="cart-badge">0</span>
-                        </button>
+                        <a class="nav-link category-filter" href="#" data-category="audio">Audio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category-filter" href="#" data-category="accessories">Accesorios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category-filter" href="#" data-category="components">Componentes</a>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section id="inicio" class="hero-section">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <h1 class="fade-in-up">Descubre nuestra amplia gama de productos</h1>
-                    <p class="fade-in-up" style="animation-delay: 0.2s;">Lo que necesitas, al alcance de tu mano</p>
-                    <button class="btn btn-primary-custom btn-lg btn-animated" style="animation-delay: 0.4s;" onclick="document.getElementById('catalogo').scrollIntoView()">
-                        <i class="fas fa-shopping-bag me-2"></i>Ver Productos
+                
+                <div class="d-flex align-items-center">
+                    <div class="search-container me-3">
+                        <input type="text" class="form-control search-input" placeholder="Buscar productos..." id="searchInput">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <button class="btn btn-outline-light me-3" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn btn-primary position-relative" id="cartToggle">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
                     </button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Catálogo -->
-    <section id="catalogo" class="section-padding">
+    </nav>
+    <section class="hero-section">
         <div class="container">
-            <div class="section-title">
-                <h2 class="fade-in-up">Nuestros Productos</h2>
-                <p class="fade-in-up" style="animation-delay: 0.1s;">Productos de calidad seleccionados especialmente para ti</p>
+            <div class="row align-items-center min-vh-100 pt-5">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold mb-4 animate-fade-in">La Mejor Tecnología a tu Alcance</h1>
+                        <p class="lead mb-4 animate-fade-in-delay">Descubre los últimos productos en tecnología con los mejores precios del mercado.</p>
+                        <button class="btn btn-primary btn-lg animate-fade-in-delay-2" onclick="scrollToProducts()">
+                            Ver Productos <i class="fas fa-arrow-down ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image animate-float">
+                        <i class="fas fa-laptop display-1 text-primary"></i>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Filtros -->
+        </div>
+    </section>
+    <section class="py-4 bg-light category-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap justify-content-center gap-2" id="categoryPills">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5" id="products-section">
+        <div class="container">
             <div class="row mb-4">
-                <div class="col-md-6">
-                    <select class="form-select" id="categoryFilter" onchange="filterProducts()">
-                        <option value="todos">Todas las categorías</option>
-                        <option value="electronica">Electrónica</option>
-                        <option value="ropa">Ropa</option>
-                        <option value="hogar">Hogar</option>
-                    </select>
+                <div class="col-12 text-center">
+                    <h2 class="display-5 fw-bold mb-3">Productos Destacados</h2>
+                    <p class="lead text-muted">Los mejores productos de tecnología seleccionados para ti</p>
                 </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar productos..." onkeyup="searchProducts()">
+            </div>
+
+            <div class="text-center my-5 d-none" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
                 </div>
             </div>
             
-            <div class="row" id="productGrid">
-                <!-- Los productos se cargan dinámicamente -->
+            <div class="row" id="productsGrid">
+            </div>
+
+            <div class="text-center my-5 d-none" id="noResults">
+                <i class="fas fa-search display-4 text-muted mb-3"></i>
+                <h4>No se encontraron productos</h4>
+                <p class="text-muted">Intenta con otros términos de búsqueda</p>
             </div>
         </div>
     </section>
-
-    <section id="comentarios" class="section-padding bg-light">
+    <section class="py-5 bg-primary text-white newsletter-section">
         <div class="container">
-            <div class="section-title">
-                <h2 class="fade-in-up">Lo que dicen nuestros clientes satisfechos</h2>
-                <p class="fade-in-up" style="animation-delay: 0.1s;">Opiniones reales de quienes ya nos eligieron</p>
-            </div>
-            
-            <div class="row" id="commentsList">
-                <!-- Los comentarios se cargan dinámicamente -->
-            </div>
-            
-            <!-- Formulario para agregar comentario -->
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card custom-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Comparte tu experiencia</h5>
-                            <form id="commentForm">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="userName" placeholder="Tu nombre" required>
-                                </div>
-                                <div class="mb-3">
-                                    <select class="form-select" id="userRating" required>
-                                        <option value="">Califica tu experiencia</option>
-                                        <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
-                                        <option value="4">⭐⭐⭐⭐ Muy bueno</option>
-                                        <option value="3">⭐⭐⭐ Bueno</option>
-                                        <option value="2">⭐⭐ Regular</option>
-                                        <option value="1">⭐ Malo</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" id="userComment" rows="3" placeholder="Escribe tu comentario..." required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary-custom btn-animated">
-                                    <i class="fas fa-comment me-2"></i>Enviar Comentario
-                                </button>
-                            </form>
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h3 class="mb-3">¡Mantente Actualizado!</h3>
+                    <p class="mb-4">Recibe las mejores ofertas y novedades en tecnología</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu email">
+                        <button class="btn btn-light" type="button">Suscribirse</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Soporte -->
-    <section id="soporte" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="fade-in-up">Estamos aquí para ayudarte</h2>
-                <p class="fade-in-up" style="animation-delay: 0.1s;">Nuestro equipo está disponible para resolver todas tus dudas</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card custom-card text-center fade-in-up" style="animation-delay: 0.1s;">
-                        <div class="card-body">
-                            <i class="fas fa-phone fa-3x text-primary mb-3"></i>
-                            <h5>Llámanos</h5>
-                            <p>De Lunes a Viernes<br>9:00 AM - 6:00 PM</p>
-                            <button class="btn btn-primary-custom btn-animated">
-                                <i class="fas fa-phone me-2"></i>Llamar Ahora
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mb-4">
-                    <div class="card custom-card text-center fade-in-up" style="animation-delay: 0.2s;">
-                        <div class="card-body">
-                            <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
-                            <h5>Escríbenos</h5>
-                            <p>Respuesta en menos de 24 horas</p>
-                            <button class="btn btn-primary-custom btn-animated">
-                                <i class="fas fa-envelope me-2"></i>Enviar Email
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mb-4">
-                    <div class="card custom-card text-center fade-in-up" style="animation-delay: 0.3s;">
-                        <div class="card-body">
-                            <i class="fas fa-comments fa-3x text-primary mb-3"></i>
-                            <h5>Chat Online</h5>
-                            <p>Disponible 24/7</p>
-                            <button class="btn btn-primary-custom btn-animated">
-                                <i class="fas fa-comments me-2"></i>Iniciar Chat
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carrito Sidebar -->
-    <div id="cartSidebar" class="cart-sidebar">
-        <div class="cart-header p-3 border-bottom">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Tu Carrito</h5>
-                <button class="btn btn-sm btn-outline-secondary btn-animated" onclick="toggleCart()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div class="cart-body p-3">
-            <div id="cartItems">
-                <!-- Items del carrito se cargan dinámicamente -->
-            </div>
-            
-            <div id="emptyCart" class="text-center py-5">
-                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
-                <p class="text-muted">Tu carrito está vacío</p>
-                <button class="btn btn-primary-custom btn-animated" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag me-2"></i>Continuar Comprando
-                </button>
-            </div>
-        </div>
-        
-        <div class="cart-footer p-3 border-top">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <strong>Total: $<span id="totalAmount">0</span></strong>
-            </div>
-            <button class="btn btn-primary-custom w-100 btn-animated" onclick="checkout()">
-                <i class="fas fa-credit-card me-2"></i>Proceder al Pago
-            </button>
-        </div>
-    </div>
-
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5><i class="fas fa-store me-2"></i>Open Template - Encr0</h5>
-                    <p>Tu destino de compras online con los mejores productos y el mejor servicio.</p>
-                    <div class="social-links">
-                        <a href="#" class="btn-animated"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="btn-animated"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="btn-animated"><i class="fab fa-twitter"></i></a>
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-microchip me-2"></i>TechStore Chile</h5>
+                    <p class="text-muted">Tu tienda de confianza para productos de tecnología con los mejores precios y garantía.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Categorías</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Laptops</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Smartphones</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Gaming</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Audio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Soporte</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Contacto</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Garantías</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Devoluciones</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Síguenos</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
-                <div class="col-md-4 mb-4">
-                    <h6>Enlaces Útiles</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#catalogo">Productos</a></li>
-                        <li><a href="#comentarios">Testimonios</a></li>
-                        <li><a href="#soporte">Soporte</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-md-4 mb-4">
-                    <h6>Contacto</h6>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt me-2"></i>Dirección de ejemplo</li>
-                        <li><i class="fas fa-phone me-2"></i>Numero de telefono</li>
-                        <li><i class="fas fa-envelope me-2"></i>info@tutienda.com</li>
-                    </ul>
-                </div>
             </div>
-            
             <hr class="my-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 Open Template. Todos los derechos reservados. - Encr0</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="me-3">Política de Privacidad</a>
-                    <a href="#">Términos de Servicio</a>
-                </div>
+            <div class="text-center">
+                <p class="mb-0 text-muted">&copy; 2025 TechStore Chile. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
-
-    <button id="scrollToTop" class="btn-animated" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                    </div>
+                    <div class="cart-empty text-center py-5 d-none" id="cartEmpty">
+                        <i class="fas fa-shopping-cart display-4 text-muted mb-3"></i>
+                        <h5>Tu carrito está vacío</h5>
+                        <p class="text-muted">Agrega algunos productos para comenzar</p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <div class="cart-total">
+                        <h5>Total: <span id="cartTotal">$0</span></h5>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="checkoutBtn">Finalizar Compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
